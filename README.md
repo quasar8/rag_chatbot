@@ -21,8 +21,46 @@ The knowledge base is a curated set of **8 academic papers**, review articles, a
 
 **Dataset used for domain scope (referenced within the literature, not directly ingested):** NASA C-MAPSS turbofan degradation dataset [https://data.nasa.gov/dataset/cmapss-jet-engine-simulated-data].
 
-## Key Findings & Results
+## 🚀 Key Findings & Results
  
-* **Diagnosed and fixed a subtle retrieval-vs-generation failure mode:** for a known-hard question, the correct source chunk was being retrieved (even ranked #1 by similarity), yet the LLM still failed to use it correctly. Isolating data presence, retrieval ranking, memory state, and generation as separate hypotheses showed the root cause was in generation, not retrieval — fixed via system-prompt engineering rather than more aggressive retrieval tuning.
+* **Diagnosed and fixed a subtle retrieval-vs-generation failure mode:** for a known-hard question, the correct source chunk was being retrieved (even ranked #1 by similarity), yet the LLM still failed to use it correctly. Isolating data presence, retrieval ranking, memory state, and generation as separate hypotheses showed the root cause was in generation, not retrieval — fixed via **system-prompt engineering** rather than more aggressive retrieval tuning.
 * **Balanced faithfulness against usefulness:** `temperature=0` produced answers that were accurate but overly terse and copy-pasted; raising it to `0.2` (with `similarity_top_k` tuned from 4 to 6) restored complete, well-explained answers without introducing hallucination.
 * **Solved multi-user state leakage:** the basic Gradio interface shares one chat-engine memory across every visitor. The advanced interface resets and refills that memory from each browser session's own history on every message, so concurrent users never see each other's conversations — with retrieval depth (Top-K) live-adjustable per session.
+
+
+
+## 🛠️ Technologies Used
+ 
+ 
+**Programming:** 
+Python
+ 
+**RAG Framework:**
+LlamaIndex (`llama-index-core`, `llama-index-llms-groq`, `llama-index-readers-file`, `llama-index-embeddings-huggingface`)
+ 
+**LLM Inference:**
+Groq API (`openai/gpt-oss-120b`)
+ 
+**Embeddings:**
+HuggingFace `BAAI/bge-base-en-v1.5`
+ 
+**Web Interface:**
+Gradio 6.x
+ 
+**Environment & Storage:**
+Google Colab, Google Drive 
+
+## Project Structure
+ 
+```
+├── rag_chatbot.ipynb   # Main notebook: full RAG pipeline + Gradio UI
+├── images/                   
+└── README.md
+```
+ 
+## Visualisations
+![Advanced chat interface, ready to answer](images/advanced_chat_interface_empty.png)
+*The advanced Gradio interface before a question is asked — note the per-example Top-K values and the live-adjustable Top-K slider under "Additional inputs".*
+ 
+![Advanced chat interface answering a question](images/advanced_chat_interface_answer.png)
+*The same interface answering "What is piecewise linear RUL and how to calculate it?" — grounded in the retrieved PdM/RUL literature rather than the LLM's general knowledge.*
