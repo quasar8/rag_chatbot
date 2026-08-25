@@ -74,3 +74,10 @@ Google Colab, Google Drive
 5. **Run the Code:** Run all cells in order. On the first run, execute Section 8 to build and persist the index; on later runs, skip straight to Section 9 to reload it instead.
 6. **Launch the chatbot:** Run Section 13 (basic single-user demo) or Section 14 (multi-user-safe version with an adjustable Top-K slider).
 
+- ## 📧 Contact
+- Name : Safak Koclu
+- Email: koclusafak@gmail.com
+- LinkedIn: [My LinkedIn Profile](https://www.linkedin.com/in/safak-koclu/)
+- GitHub: [My GitHub Profile](https://github.com/quasar8)
+ 
+
