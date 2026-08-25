@@ -50,7 +50,7 @@ Gradio 6.x
 **Environment & Storage:**
 Google Colab, Google Drive 
 
-## Project Structure
+## 📁  Project Structure
  
 ```
 ├── rag_chatbot.ipynb   # Main notebook: full RAG pipeline + Gradio UI
@@ -58,9 +58,19 @@ Google Colab, Google Drive
 └── README.md
 ```
  
-## Visualisations
+## 📈 Visualisations
 ![Advanced chat interface, ready to answer](images/advanced_chat_interface_empty.png)
 *The advanced Gradio interface before a question is asked — note the per-example Top-K values and the live-adjustable Top-K slider under "Additional inputs".*
  
 ![Advanced chat interface answering a question](images/advanced_chat_interface_answer.png)
 *The same interface answering "What is piecewise linear RUL and how to calculate it?" — grounded in the retrieved PdM/RUL literature rather than the LLM's general knowledge.*
+
+## 🔗 How to Use This Project
+ 
+1. **Main Analysis:** Open [`rag_chatbot_github.ipynb`](rag_chatbot_github.ipynb) in Google Colab.
+2. **Data:** Upload your own PDF/TXT predictive-maintenance documents to a Google Drive folder (see [Dataset & Sources](#dataset--sources) for the papers used in this project).
+3. **Setup:** Add your `GROQ_API_KEY` and `HF_TOKEN` to Colab's Secrets manager (key icon in the left sidebar) — no keys are hard-coded in the notebook.
+4. **Configure paths:** In Sections 5, 8, and 9 of the notebook, update `DATA_DIR` and `INDEX_DIR` to point at your own Drive folders.
+5. **Run the Code:** Run all cells in order. On the first run, execute Section 8 to build and persist the index; on later runs, skip straight to Section 9 to reload it instead.
+6. **Launch the chatbot:** Run Section 13 (basic single-user demo) or Section 14 (multi-user-safe version with an adjustable Top-K slider).
+
